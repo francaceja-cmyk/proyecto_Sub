@@ -58,7 +58,7 @@ public class crear_tarea extends javax.swing.JFrame {
 
         jLabel3.setText("Prioridad:");
 
-        cmbPrio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baja", "Media", "Alta", " " }));
+        cmbPrio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baja", "Media", "Alta" }));
         cmbPrio.addActionListener(this::cmbPrioActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
