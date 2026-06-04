@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author usuario
@@ -110,10 +112,16 @@ public class interfaz_lista extends javax.swing.JFrame {
 
     private void listaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listaKeyTyped
         // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+        }
     }//GEN-LAST:event_listaKeyTyped
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
         // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+
+        }
     }//GEN-LAST:event_listaMouseClicked
 
     private void cmbOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOrdenActionPerformed
