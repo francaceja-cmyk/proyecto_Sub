@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.io.File;
+import java.time.LocalDate;
+import java.util.Date;
+
 /**
  *
  * @author usuario
@@ -38,7 +42,6 @@ public class crear_tarea extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cmbPrio = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Titulo:");
 
@@ -122,6 +125,8 @@ public class crear_tarea extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void tituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tituloActionPerformed
@@ -130,10 +135,21 @@ public class crear_tarea extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
+        String Titulo = titulo.getText();
+        String prioridad = cmbPrio.getItemAt(cmbPrio.getSelectedIndex()).toString();
+        String descripcion = Descripcion.getText();
+        Date fecha = Fecha.getDate();
+        Tarea nueva = new Tarea(prioridad, fecha, Titulo, descripcion, new File("./Tareas/"+Titulo+"/"));
+        nueva.crearArchivo(nueva.getArchivo());
+        titulo.setText("");
+        Descripcion.setText("");
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        interfaz_lista c = new interfaz_lista();
+        dispose();
+        c.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void cmbPrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrioActionPerformed
