@@ -156,30 +156,33 @@ public class interfaz_lista extends javax.swing.JFrame {
             int fila = tabla.getSelectedRow();
             String titular = tabla.getModel().getValueAt(fila, 0).toString();
             int option =JOptionPane.showConfirmDialog(null, "Quieres eliminar la tarea?");
-            if(option ==1){
+            if(option ==0){
+                for (Tarea tarea : tareas) {
+                    if (tarea.getTitulo().equals(titular)) {
+                        tarea.eliminarDirectorio(new File(tarea.getArchivo().getParent() + "/"));
+                        JOptionPane.showMessageDialog(null, "Tarea eliminada.");
+                    }
+                }
+                g.setTareas();
+                if(cmbOrden.getSelectedIndex() == 0){
+                    ModeloTablaPrio prio = new ModeloTablaPrio(g.getTareas());
+                    tabla.setModel(prio.getModelo());
+                }
+                if (cmbOrden.getSelectedIndex() == 1){
+                    ModeloTablaFecha fecha = new ModeloTablaFecha(g.getTareas());
+                    tabla.setModel(fecha.getModelo());
+                }
+                if (cmbOrden.getSelectedIndex() == 2){
+                    ModeloTablaAlf alf = new ModeloTablaAlf(g.getTareas());
+                    tabla.setModel(alf.getModelo());
+                }
+
+            } else{
                 JOptionPane.showMessageDialog(null, "Cancelado");
-                return;
+
             }
 
-            for (Tarea tarea : tareas) {
-                if (tarea.getTitulo().equals(titular)) {
-                    tarea.eliminarDirectorio(new File(tarea.getArchivo().getParent() + "/"));
-                    JOptionPane.showMessageDialog(null, "Tarea eliminada.");
-                }
-            }
-            g.setTareas();
-            if(cmbOrden.getSelectedIndex() == 0){
-                ModeloTablaPrio prio = new ModeloTablaPrio(g.getTareas());
-                tabla.setModel(prio.getModelo());
-            }
-            if (cmbOrden.getSelectedIndex() == 1){
-                ModeloTablaFecha fecha = new ModeloTablaFecha(g.getTareas());
-                tabla.setModel(fecha.getModelo());
-            }
-            if (cmbOrden.getSelectedIndex() == 2){
-                ModeloTablaAlf alf = new ModeloTablaAlf(g.getTareas());
-                tabla.setModel(alf.getModelo());
-            }
+
     }
 
     private void cmbOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOrdenActionPerformed
