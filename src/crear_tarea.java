@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class crear_tarea extends javax.swing.JFrame {
      */
     public crear_tarea() {
         initComponents();
+
     }
 
     /**
@@ -30,7 +32,16 @@ public class crear_tarea extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+//        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                interfaz_lista c = new interfaz_lista();
+                dispose();
+                c.setVisible(true);
+            }
+        });
         Fecha = new com.toedter.calendar.JCalendar();
         jLabel1 = new javax.swing.JLabel();
         titulo = new javax.swing.JTextField();
@@ -139,6 +150,10 @@ public class crear_tarea extends javax.swing.JFrame {
         String prioridad = cmbPrio.getItemAt(cmbPrio.getSelectedIndex()).toString();
         String descripcion = Descripcion.getText();
         Date fecha = Fecha.getDate();
+        if (titulo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un titulo");
+            return;
+        }
         Tarea nueva = new Tarea(prioridad, fecha, Titulo, descripcion, new File("./Tareas/"+Titulo+"/"));
         nueva.crearArchivo(nueva.getArchivo());
         titulo.setText("");
@@ -179,6 +194,13 @@ public class crear_tarea extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new crear_tarea().setVisible(true));
+    }
+
+    public void actualizarDatosTarea(Tarea tarea){
+        this.titulo.setText(tarea.getTitulo());
+        this.Descripcion.setText(tarea.getDescripcion());
+        this.cmbPrio.setSelectedItem(tarea.getPrioridad());
+        this.Fecha.setDate(tarea.getFecha());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

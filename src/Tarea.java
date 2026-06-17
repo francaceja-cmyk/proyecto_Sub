@@ -94,8 +94,10 @@ public class Tarea {
         }else JOptionPane.showMessageDialog(null, "Archivo ya existe");
         }
     public void editarTarea(Tarea tarea) throws IOException {
-        Desktop desktop = Desktop.getDesktop();
-        desktop.open(new File("./Tareas/"+titulo + "/"+titulo+".txt"));
+        crear_tarea uicrear = new crear_tarea();
+        uicrear.actualizarDatosTarea(tarea);
+        uicrear.setVisible(true);
+
     }
     public boolean eliminarDirectorio(File directorio) {
         if (directorio.exists()) {
